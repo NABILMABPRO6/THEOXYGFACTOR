@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>The Oxygen Factor – Fuel Your Brand. Fill Your Bookings.</title>
+    <meta content="Clear, committed digital marketing strategy and support for beauty and wellness professionals. Let your brand breathe." name="description"/>
+    <!-- OG/Twitter Meta Tags -->
+    <meta content="The Oxygen Factor – Fuel Your Brand. Fill Your Bookings." property="og:title"/>
+    <meta content="Clear, committed digital marketing strategy and support for beauty and wellness professionals. Let your brand breathe." property="og:description"/>
+    <meta content="<!-- TODO: Add actual FULL URL for OG preview image -->" property="og:image"/> <!-- Placeholder -->
+    <meta content="The Oxygen Factor – Fuel Your Brand. Fill Your Bookings." property="twitter:title"/>
+    <meta content="Clear, committed digital marketing strategy and support for beauty and wellness professionals. Let your brand breathe." property="twitter:description"/>
+    <meta content="<!-- TODO: Add actual FULL URL for Twitter preview image -->" property="twitter:image"/> <!-- Placeholder -->
+    <meta property="og:type" content="website"/>
+    <meta content="summary_large_image" name="twitter:card"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+
+    <!-- Favicons -->
+    <link href="<!-- TODO: Add actual path for favicon.ico -->" rel="shortcut icon" type="image/x-icon"/> <!-- Placeholder -->
+    <link href="<!-- TODO: Add actual path for apple-touch-icon.png -->" rel="apple-touch-icon"/> <!-- Placeholder -->
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        WebFont.load({
+             google: { families: ["Roboto:regular", "Inter:regular,500,600,700", "Caveat Brush:regular"] }
+        });
+    </script>
+
+    <!-- Libraries -->
+    <!-- Using defer can slightly improve initial page load perception -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js' defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" defer></script>
+    <!-- Font Awesome loaded via CSS for faster rendering -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* === COLOR PALETTE === */
+        :root {
+            --primary: #00B4B3; --primary-darker: #009a99; --secondary: #F5E9E2;
+            --accent: #FF6B6B; --deep-neutral: #2C2C2C; --soft-contrast: #F0FAFA;
+            --highlight: #D9BBA0; --white: #FFFFFF; --dark-text: #303030;
+            --body-text-color: #5a5a5a; --light-text-color: var(--white);
+            --grey-text-color: #888; --border-light: #e8e8e8;
+            --shadow-sm: 0 4px 15px rgba(44, 44, 44, 0.06);
+            --shadow-md: 0 8px 25px rgba(44, 44, 44, 0.08);
+            --shadow-lg: 0 12px 35px rgba(44, 44, 44, 0.1);
+            --radius: 10px;
+        }
+
+        /* === GLOBAL STYLES === */
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 100%; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+        body { margin: 0; font-family: 'Inter', sans-serif; font-size: 1rem; line-height: 1.7; color: var(--body-text-color); background-color: var(--white); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        img { max-width: 100%; height: auto; display: block; border-radius: 8px; }
+        a { text-decoration: none; color: var(--primary); transition: color 0.3s ease; }
+        a:hover { color: var(--primary-darker); }
+        h1, h2, h3, h4, h5, h6 { color: var(--dark-text); font-weight: 700; line-height: 1.3; margin: 0 0 0.75em 0; }
+        h1 { font-size: clamp(2.5rem, 6vw, 3.5rem); line-height: 1.2; }
+        h2 { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+        h3 { font-size: clamp(1.3rem, 4vw, 1.6rem); }
+        p { margin: 0 0 1.5em 0; }
+        p:last-child { margin-bottom: 0; }
+        ul, ol { margin: 0 0 1.5em 0; padding-left: 1.5em; }
+        li { margin-bottom: 0.5em; }
+
+        /* === LAYOUT & SPACING === */
+        .container { width: 92%; max-width: 1180px; margin: 0 auto; padding: 0 15px; }
+        .section { padding: clamp(4rem, 10vw, 6rem) 0; position: relative; overflow: hidden; }
+        .section-narrow { padding: clamp(3rem, 8vw, 4.5rem) 0; }
+        .section-bg-light { background-color: var(--secondary); }
+        .section-bg-soft { background-color: var(--soft-contrast); }
+        .section + .section:not(.footer-cta-section):not(.footer-section) { border-top: 1px solid var(--border-light); }
+
+        /* === TYPOGRAPHY HELPERS === */
+        .block-overline { text-transform: uppercase; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px; color: var(--primary); letter-spacing: 2.5px; text-align: center; }
+        .block-overline.is-left { text-align: left; }
+        .block-header, .block-title { margin-bottom: 30px; text-align: center; }
+        .block-header.is-left, .block-title.is-left { text-align: left; }
+        .text-center { text-align: center; }
+        .max-width-narrow { max-width: 720px; margin-left: auto; margin-right: auto; }
+        .highlight-text { color: var(--primary); font-weight: 600; }
+        .accent-text { color: var(--accent); font-weight: 600;}
+
+        /* === BUTTONS === */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 35px; border-radius: var(--radius); text-decoration: none; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); font-weight: 600; cursor: pointer; border: none; font-size: 1rem; text-align: center; vertical-align: middle; line-height: 1.3; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+        .btn i, .btn svg { margin-right: 0.6em; font-size: 0.9em; line-height: 1; }
+        .primary-btn { background-color: var(--primary); color: var(--light-text-color); box-shadow: var(--shadow-sm); }
+        .primary-btn:hover:not(:disabled) { background-color: var(--primary-darker); transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0, 180, 179, 0.3); }
+        .secondary-btn { background-color: transparent; color: var(--primary); border: 2px solid var(--primary); }
+        .secondary-btn:hover:not(:disabled) { background-color: var(--primary); color: var(--light-text-color); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+        .btn:focus-visible { outline: 2px solid var(--primary-darker); outline-offset: 2px; }
+        .btn:disabled { cursor: not-allowed; opacity: 0.7; }
+
+        /* === NAVIGATION === */
+        .nav-section { position: absolute; top: 0; left: 0; width: 100%; z-index: 1000; padding: 20px 0; background-color: transparent; transition: background-color 0.4s ease-out, padding 0.4s ease-out, box-shadow 0.4s ease-out; }
+        .nav-section.sticky-nav { position: fixed; background-color: var(--white); padding: 10px 0; box-shadow: var(--shadow-md); border-bottom: 1px solid var(--border-light); }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand-link img { max-height: 50px; height: auto; display: block; transition: filter 0.4s ease; }
+        /* .nav-section:not(.sticky-nav) .nav-brand-link img { filter: brightness(0) invert(1); } */
+        .nav-menu-wrapper { display: none; align-items: center; gap: 1.8rem; }
+        .nav-link { color: var(--light-text-color); font-weight: 500; position: relative; padding: 0.5em 0; font-size: 0.95rem; transition: color 0.4s ease; }
+        .nav-section.sticky-nav .nav-link { color: var(--dark-text); }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--primary); transition: width 0.3s ease-out; }
+        .nav-link:hover::after, .nav-link.w--current::after { width: 100%; }
+        .nav-link:hover, .nav-link:focus-visible { color: var(--primary); outline: none; }
+        .nav-section:not(.sticky-nav) .nav-link:hover { color: var(--primary); }
+
+        /* === HERO SECTION === */
+        .hero-section-new { padding: 140px 0 clamp(5rem, 12vw, 8rem) 0; min-height: 70vh; display: flex; align-items: center; text-align: center; position: relative; overflow: hidden; color: var(--light-text-color); background-color: #333; /* Fallback */ /* TODO: Verify HERO SECTION.jpeg path/name or update */ background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.55)), url('HERO SECTION.jpeg'); background-size: cover; background-position: center center; }
+        .hero-content-wrapper { position: relative; z-index: 2; max-width: 900px; margin: 0 auto; }
+        .hero-overline-new { color: var(--accent) !important; font-size: 1rem; font-weight: 600; letter-spacing: 0.5px; text-transform: none; margin-bottom: 1em; display: block; }
+        .hero-header-new { color: var(--light-text-color) !important; font-size: clamp(2.6rem, 7vw, 4rem); font-weight: 700; line-height: 1.25; margin: 0 auto 0.5em auto; position: relative; min-height: 90px; max-width: 850px; }
+        .hero-header-new .anim-text { font-family: 'Caveat Brush', cursive; font-weight: 400; text-transform: none; font-size: 95%; line-height: 1.3; display: inline-block; margin-right: 10px; opacity: 0; position: absolute; top: 0; left: 0; right: 0; margin-left: auto; margin-right: auto; clip: rect(0px, 0px, 400px, 0px); color: var(--light-text-color) !important; text-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+        .hero-subheadline-new { font-size: clamp(1rem, 2.5vw, 1.2rem); color: rgba(255, 255, 255, 0.9); margin: 0 auto 2em auto; max-width: 700px; line-height: 1.7; }
+        .hero-cta-wrapper { margin-top: 2.5em; margin-bottom: 3em; }
+        .hero-cta-wrapper .btn { padding: 16px 40px; font-size: 1.05rem; }
+        .hero-concepts-list { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1.5rem 2.5rem; margin-top: 1.5em; padding: 0; list-style: none; }
+        .hero-concept-item { display: flex; align-items: center; gap: 0.7em; font-size: 0.9rem; font-weight: 500; color: rgba(255, 255, 255, 0.85); }
+        .hero-concept-item i { color: var(--primary); font-size: 1.1em; }
+
+        /* === CLIENT LOGOS === */
+        .client-section { padding: 50px 0; background-color: var(--section-bg-soft); }
+        .client-con .block-overline { color: var(--grey-text-color); font-size: 0.75rem; letter-spacing: 3px;}
+        .client-logo-carousel { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: clamp(2.5rem, 7vw, 5rem); margin-top: 30px; }
+        .client-logo-item img { max-height: 60px; height: auto; width: auto; max-width: 150px; filter: grayscale(100%) opacity(0.6); transition: filter 0.3s ease, opacity 0.3s ease; }
+        .client-logo-item img:hover { filter: none; opacity: 1; }
+
+        /* === INTRO / ABOUT SECTION === */
+        .intro-section .grid-2-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+        .intro-image img { border-radius: var(--radius); box-shadow: var(--shadow-md); }
+        .intro-details strong.highlight-text { display: block; margin-top: 1em; font-size: 1.1em; line-height: 1.6; }
+
+        /* === SERVICES SECTION === */
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; margin-top: 45px; }
+        .service-wrapper { background-color: var(--white); padding: 30px; border-radius: var(--radius); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid var(--border-light); min-height: 400px; }
+        .service-wrapper:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
+        .service-icon { background-color: rgba(0, 180, 179, 0.08); color: var(--primary); width: 50px; height: 50px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.5em; flex-shrink: 0; }
+        .service-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 1em; }
+        .service-content p { font-size: 0.95rem; margin-bottom: 1.5em;}
+        .service-list-con { margin: 1.5em 0; padding-left: 0; list-style: none; flex-grow: 1; }
+        .service-list-wrapper { display: flex; align-items: flex-start; margin-bottom: 0.8em; color: var(--body-text-color); font-size: 0.9rem;}
+        .service-list-icon { width: 18px; height: 18px; margin-right: 10px; color: var(--primary); flex-shrink: 0; margin-top: 3px; }
+        .service-cta-wrapper { text-align: center; margin-top: 3rem; }
+
+        /* === WHY WORK WITH ME SECTION === */
+        .why-us-section .grid-2-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+        .why-us-image img { border-radius: var(--radius); box-shadow: var(--shadow-md); }
+        .trial-offer { background-color: var(--soft-contrast); color: var(--dark-text); padding: 20px 30px; text-align: center; font-weight: 600; border-radius: var(--radius); margin-top: 2.5em; border: 1px solid rgba(0, 180, 179, 0.25); }
+
+        /* === FOUNDER SECTION === */
+        .founder-section .grid-2-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+        .founder-image-wrapper { text-align: center; }
+        .founder-image-wrapper img { border-radius: 50%; box-shadow: var(--shadow-lg); border: 6px solid var(--white); max-width: 300px; margin: 0 auto;}
+
+        /* === TESTIMONIALS SECTION === */
+        #testimonials { padding-bottom: 60px; }
+        .testimonial-card { background-color: var(--white); padding: 35px clamp(1.5rem, 5vw, 3rem); border-radius: var(--radius); margin: 30px auto 0 auto; max-width: 780px; text-align: center; border: 1px solid var(--border-light); box-shadow: var(--shadow-md); position: relative; }
+        .testimonial-card::before { content: "\f10d"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; top: 25px; left: 30px; font-size: 2.5rem; color: var(--primary); opacity: 0.1; z-index: 0; }
+        .testimonial-quote { font-style: italic; color: var(--body-text-color); margin-bottom: 1.5em; font-size: 1.1rem; position: relative; z-index: 1;}
+        .testimonial-author { font-weight: 600; font-size: 1rem; color: var(--dark-text); }
+        .testimonial-author span { font-weight: 400; color: var(--grey-text-color); display: block; font-size: 0.85rem; margin-top: 5px;}
+
+        /* === CONTACT FORM SECTION === */
+        #contact-form-section { padding: clamp(3rem, 8vw, 5rem) 0; }
+        .contact-form-wrapper { max-width: 700px; margin: 0 auto; padding: clamp(2rem, 5vw, 3rem); background-color: var(--white); border-radius: var(--radius); box-shadow: var(--shadow-md); border: 1px solid var(--border-light); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.5em; color: var(--dark-text); font-size: 0.9rem; cursor: pointer; }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea { width: 100%; padding: 12px 15px; border: 1px solid var(--border-light); border-radius: var(--radius); font-family: inherit; font-size: 1rem; transition: border-color 0.3s ease, box-shadow 0.3s ease; -webkit-appearance: none; appearance: none; }
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group input[type="tel"]:focus,
+        .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(0, 180, 179, 0.15); }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+        .form-group small { display: block; margin-top: 0.3em; font-size: 0.8rem; color: var(--grey-text-color); }
+        .form-submit-btn { width: 100%; padding: 15px 30px; font-size: 1.1rem; }
+        .form-confirmation { text-align: center; font-size: 0.9rem; margin-top: 1.5em; color: var(--body-text-color); display: none; /* Hidden by default */ padding: 1em; background-color: var(--soft-contrast); border-radius: var(--radius); border: 1px solid var(--border-light); }
+
+        /* === FOOTER CTA SECTION === */
+        #cta-final { background-color: var(--primary); color: var(--light-text-color); padding: clamp(4rem, 10vw, 6rem) 0; text-align: center; position: relative; }
+        #cta-final .container { position: relative; z-index: 2; }
+        #cta-final .block-overline { color: rgba(255, 255, 255, 0.9); letter-spacing: 2px; }
+        #cta-final h2 { color: var(--light-text-color); }
+        #cta-final p { color: rgba(255, 255, 255, 0.95); max-width: 680px; margin: 0 auto 2.5em auto; font-size: 1.1rem; }
+        #cta-final .btn.primary-btn { background-color: var(--white); color: var(--primary); font-weight: 700; padding: 16px 40px; font-size: 1.05rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        #cta-final .btn.primary-btn:hover { background-color: var(--secondary); color: var(--dark-text); box-shadow: var(--shadow-sm); transform: translateY(-3px); }
+        #cta-final .btn.primary-btn i, #cta-final .btn.primary-btn span { color: var(--primary) !important; }
+        #cta-final .btn.primary-btn:hover i, #cta-final .btn.primary-btn:hover span { color: var(--dark-text) !important; }
+
+        /* === FOOTER SECTION === */
+        .footer-section { background-color: var(--deep-neutral); color: #b5b5b5; padding: 70px 0 30px 0; font-size: 0.9rem; }
+        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px 30px; margin-bottom: 50px; }
+        .footer-menu-title { font-weight: 600; color: var(--white); margin-bottom: 1.2em; font-size: 1.05rem; }
+        .footer-menu-con ul { list-style: none; padding: 0; margin: 0;}
+        .footer-menu-con li { margin-bottom: 0.8em; }
+        .footer-link { color: #b5b5b5; text-decoration: none; transition: color 0.3s ease; }
+        .footer-link:hover, .footer-link:focus-visible { color: var(--primary); outline: none; }
+        .footer-contact { display: flex; align-items: center; margin-bottom: 1em; }
+        .footer-contact i { width: 20px; text-align: center; margin-right: 10px; color: var(--primary); font-size: 1.1em; flex-shrink: 0; }
+        .footer-contact-link { color: #b5b5b5; text-decoration: none; word-break: break-word; }
+        .footer-contact-link:hover, .footer-contact-link:focus-visible { color: var(--primary); outline: none; }
+        .footer-soc-con { display: flex; gap: 18px; margin-top: 5px; }
+        .footer-soc-wrapper { color: #b5b5b5; font-size: 1.3rem; transition: color 0.3s ease, transform 0.3s ease; }
+        .footer-soc-wrapper:hover, .footer-soc-wrapper:focus-visible { color: var(--primary); transform: translateY(-2px); outline: none; }
+        .footer-back-to-top { justify-self: end; align-self: end; }
+        .footer-back-to-top .footer-link { font-size: 1.5rem; display: inline-block; padding: 5px; }
+        .footnote { text-align: center; border-top: 1px solid #444; padding-top: 30px; font-size: 0.8rem; color: #999; }
+
+        /* === MOBILE NAV & RESPONSIVE === */
+        .burger { display: none; width: 28px; height: 20px; position: relative; margin-left: 1rem; cursor: pointer; z-index: 1001; border: none; background: transparent; padding: 0; }
+        .burger-wrapper { width: 100%; height: 100%; position: relative; }
+        .burger-line { display: block; width: 100%; height: 2px; background-color: var(--dark-text); border-radius: 3px; position: absolute; left: 0; transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), background-color 0.4s ease; }
+        .nav-section:not(.sticky-nav) .burger-line { background-color: var(--white); }
+        .burger-line.top-line { top: 0; }
+        .burger-line.bot-line { bottom: 0; }
+        .burger.active .burger-line.top-line { transform: translateY(9px) rotate(45deg); }
+        .burger.active .burger-line.bot-line { transform: translateY(-9px) rotate(-45deg); }
+        .burger:focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; }
+        .burger.active .burger-line { background-color: var(--dark-text); }
+        .nav-section:not(.sticky-nav) .burger.active .burger-line { background-color: var(--white); }
+
+        .mobile-nav { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(30, 30, 30, 0.98); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); z-index: 1000; padding: 80px 25px 40px 25px; text-align: center; overflow-y: auto; }
+        .mobile-nav nav { display: flex; flex-direction: column; height: 100%; }
+        .mobile-nav a { display: block; color: var(--white); font-size: 1.4rem; padding: 18px 0; text-decoration: none; font-weight: 500; transition: color 0.3s ease;}
+        .mobile-nav a:hover, .mobile-nav a:focus-visible { color: var(--primary); outline: none; }
+        .mobile-nav .mobile-cta { margin-top: auto; padding-top: 30px; }
+        .mobile-nav .mobile-cta .btn { width: 100%; max-width: 300px; margin: 0 auto;}
+
+        body.overflow-hidden { overflow: hidden; }
+
+        /* === MEDIA QUERIES === */
+        @media (min-width: 992px) { .nav-menu-wrapper { display: flex; } }
+        @media (max-width: 991px) {
+            .burger { display: block; }
+            h1 { font-size: clamp(2.2rem, 6vw, 2.8rem); }
+            h2 { font-size: clamp(1.7rem, 5vw, 2.1rem); }
+            .grid-2-col { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+             .block-header.is-left, .block-title.is-left, .block-overline.is-left { text-align: center; }
+            .intro-details, .why-us-details, .founder-details { order: 2; margin-top: 2em;}
+            .intro-image, .why-us-image, .founder-image-wrapper { order: 1; margin-bottom: 30px; max-width: 500px; margin-left:auto; margin-right: auto;}
+             .founder-image-wrapper img { max-width: 200px; }
+             .footer-back-to-top { grid-column: auto; justify-self: center; }
+        }
+         @media (max-width: 767px) {
+             .section { padding: clamp(3rem, 8vw, 4rem) 0; }
+             .section-narrow { padding: clamp(2.5rem, 6vw, 3.5rem) 0; }
+             #contact-form-section { padding: clamp(2.5rem, 6vw, 3.5rem) 0; }
+             #cta-final { padding: clamp(3rem, 8vw, 4.5rem) 0; }
+             .footer-section { padding: 50px 0 25px 0; }
+             .footer-container { grid-template-columns: 1fr; text-align: center; gap: 25px; margin-bottom: 35px;}
+             .footer-soc-con, .footer-contact { justify-content: center; }
+             .footer-menu-title { margin-top: 1.5em; }
+             .footer-menu-con:first-child .footer-menu-title { margin-top: 0; }
+             .service-grid { grid-template-columns: 1fr; gap: 25px;}
+             .service-wrapper { min-height: auto; }
+             .hero-section-new { padding-top: 120px; padding-bottom: clamp(4rem, 10vw, 6rem); }
+             .hero-header-new { font-size: clamp(2rem, 8vw, 2.8rem); min-height: 80px;}
+             .hero-header-new .anim-text { line-height: 1.35; font-size: 90%; }
+             .hero-subheadline-new { font-size: 1rem; }
+             .hero-concepts-list { gap: 1rem 1.5rem; justify-content: center;}
+             .hero-concept-item { font-size: 0.85rem;}
+             .contact-form-wrapper { padding: 2rem 1.5rem; }
+             .nav-brand-link img { max-height: 45px; }
+             .client-logo-item img { max-height: 50px; }
+             .testimonial-card::before { left: 15px; font-size: 2rem; }
+         }
+    </style>
+
+</head>
+<body class="body">
+
+    <!-- Navigation Section -->
+    <nav class="nav-section" id="main-nav" aria-label="Main navigation">
+        <div class="container nav-container">
+            <a href="/" aria-current="page" class="nav-brand-link">
+                 <!-- TODO: Verify 'THE O FACTOR.png' path/name -->
+                 <img src="THE O FACTOR.png" alt="The Oxygen Factor Logo">
+            </a>
+            <div class="nav-menu-container">
+                <!-- Desktop Menu -->
+                <div class="nav-menu-wrapper">
+                    <a href="#home" class="nav-link w--current">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#services" class="nav-link">Services</a>
+                    <a href="#contact-form-section" class="nav-link">Contact</a>
+                </div>
+                <!-- Mobile Burger Menu Trigger -->
+                <button class="burger" id="burger-menu" aria-label="Toggle mobile navigation" aria-expanded="false" aria-controls="mobile-nav-overlay">
+                    <div class="burger-wrapper">
+                        <span class="burger-line top-line"></span>
+                        <span class="burger-line bot-line"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Mobile Navigation Overlay -->
+     <div class="mobile-nav" id="mobile-nav-overlay" aria-label="Mobile navigation">
+        <nav>
+            <a href="#home" class="mobile-link">Home</a>
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#services" class="mobile-link">Services</a>
+            <a href="#contact-form-section" class="mobile-link">Contact</a>
+            <div class="mobile-cta">
+                 <a href="#contact-form-section" class="btn primary-btn">
+                     <i class="fab fa-whatsapp fa-fw"></i> Request Callback
+                 </a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+
+        <!-- === HERO SECTION === -->
+        <header id="home" class="section hero-section-new" aria-label="Hero Section">
+            <div class="container">
+                <div class="hero-content-wrapper">
+                    <span class="hero-overline-new">Fuel Your Brand. Fill Your Bookings.</span>
+                    <h1 class="hero-header-new">
+                        <span class="anim-text">Let Your Brand Breathe</span>
+                        <span class="anim-text">unique growth strategies</span>
+                        <span class="anim-text">results driven content</span>
+                        <span class="anim-text">profitable socials ads</span>
+                        <span class="anim-text">Done with you - Coaching</span>
+                    </h1>
+                    <p class="hero-subheadline-new">
+                        Clear, committed marketing for beauty and wellness professionals. Welcome to The Oxygen Factor — a one-person service run by someone who understands your world. No big teams. No confusion. Just honest help to grow your business online.
+                    </p>
+                    <div class="hero-cta-wrapper">
+                        <a href="#contact-form-section" class="btn primary-btn">
+                            <i class="fab fa-whatsapp fa-fw"></i> Request Callback via WhatsApp
+                        </a>
+                    </div>
+                     <ul class="hero-concepts-list">
+                        <li class="hero-concept-item"><i class="fa-solid fa-calendar-check fa-fw"></i> More Bookings</li>
+                        <li class="hero-concept-item"><i class="fa-solid fa-bullhorn fa-fw"></i> Brand Authority</li>
+                        <li class="hero-concept-item"><i class="fa-solid fa-lightbulb fa-fw"></i> Clear Strategy</li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!-- === END HERO SECTION === -->
+
+       <!-- === CLIENT LOGO SECTION === -->
+        <section id="clients" class="section client-section section-narrow section-bg-soft" aria-labelledby="client-heading">
+            <div class="container client-con">
+                <div id="client-heading" class="block-overline is-center">TRUSTED BY BRANDS LIKE YOURS</div>
+                <div class="client-logo-carousel">
+                     <div class="client-logo-item">
+                          <!-- TODO: Verify 'Client Logo A.PNG' path/name -->
+                         <img src="Client Logo A.PNG" alt="Client Logo A">
+                     </div>
+                     <div class="client-logo-item">
+                          <!-- TODO: Verify 'Client Logo B.PNG' path/name -->
+                         <img src="Client Logo B.PNG" alt="Client Logo B">
+                     </div>
+                     <div class="client-logo-item">
+                          <!-- TODO: Replace with actual logo file and update alt text -->
+                         <img src="Client Logo B.PNG" alt="Client Logo C">
+                     </div>
+                     <div class="client-logo-item">
+                          <!-- TODO: Replace with actual logo file and update alt text -->
+                         <img src="Client Logo B.PNG" alt="Client Logo D">
+                     </div>
+                     <div class="client-logo-item">
+                           <!-- TODO: Replace with actual logo file and update alt text -->
+                         <img src="Client Logo B.PNG" alt="Client Logo E">
+                     </div>
+                </div>
+            </div>
+        </section>
+        <!-- === END CLIENT LOGO SECTION === -->
+
+        <!-- === INTRO / ABOUT SECTION === -->
+        <section id="about" class="section intro-section" aria-labelledby="about-heading">
+            <div class="container">
+                 <div class="grid-2-col">
+                     <div class="intro-image">
+                        <!-- TODO: Replace placeholder image with actual relevant content and update alt text -->
+                        <img src="https://images.pexels.com/photos/7176319/pexels-photo-7176319.jpeg?auto=compress&cs=tinysrgb&w=600" loading="lazy" alt="Focused digital marketing professional analyzing charts on a laptop">
+                    </div>
+                     <div class="intro-details">
+                        <div class="block-overline is-left">THE OXYGEN FACTOR</div>
+                        <h2 id="about-heading" class="block-title is-left">Why “The Oxygen Factor”?</h2>
+                        <p>I’m Nabil Mabrouk. I created The Oxygen Factor to support people like you — aesthetic doctors, spa owners, beauty specialists — who want to grow online but are tired of empty promises and confusing agency talk.</p>
+                        <p>With a background in design and digital marketing, I work with you directly. Strategy, content, ads — no outsourcing. No fluff. Just results, delivered with care.</p>
+                        <p><strong class="highlight-text">Oxygen is essential to skin, health, and life itself. It’s invisible, but vital — just like good marketing.</strong></p>
+                        <p>At The Oxygen Factor, I help your brand stay clear, energized, and consistent. You’ll finally feel like your digital presence matches the quality of what you offer in real life.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- === END INTRO / ABOUT SECTION === -->
+
+        <!-- === SERVICES SECTION === -->
+        <section id="services" class="section section-bg-soft" aria-labelledby="services-heading">
+            <div class="container">
+                <div class="block-overline is-center">WHAT I OFFER</div>
+                <h2 id="services-heading" class="block-header is-center">Services to Help Your Brand Breathe</h2>
+                <div class="service-grid">
+                    <!-- Service 1: Strategy -->
+                    <div class="service-wrapper">
+                        <div class="service-icon"><i class="fa-solid fa-map-signs fa-fw"></i></div>
+                        <h3 class="service-title">Digital Marketing Strategy</h3>
+                        <div class="service-content">
+                            <p>Build or refine your online game plan. We'll create a clear roadmap tailored to your specific goals and audience.</p>
+                            <ul class="service-list-con">
+                                <li class="service-list-wrapper"><i class="fas fa-check-circle service-list-icon fa-fw"></i><div>Clear Strategy Development</div></li>
+                                <li class="service-list-wrapper"><i class="fas fa-check-circle service-list-icon fa-fw"></i><div>Audience & Competitor Analysis</div></li>
+                                 <li class="service-list-wrapper"><i class="fas fa-check-circle service-list-icon fa-fw"></i><div>Performance Tracking Setup</div></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Service 2: Content -->
+                    <div class="service-wrapper">
+                        <div class="service-icon"><i class="fa-solid fa-pen-ruler fa-fw"></i></div>
+                        <h3 class="service-title">Content Planning & Creation</h3>
+                        <div class="service-content">
+                            <p>Develop a consistent content plan. I can guide your team or create engaging social posts, articles, or emails.</p>
+                             <ul class="service-list-con">
+                                <li class="service-list-wrapper"><i class="fas fa-check-circle service-list-icon fa-fw"></i><div>Monthly Content Calendars</div></li>
+                                <li class="service-list-wrapper"><i class="fas fa-check-circle service-list-icon fa-fw"></i><div>Social Media Post Creation (Optional)</div></li>
+                                 <li class="service-list-wrapper"><i class="fas fa-check-circle service-list-icon fa-fw"></i><div>Content Performance Review</div></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Service 3: Ads -->
+                     <div class="service-wrapper">
+                        <div class="service-icon"><i class="fa-solid fa-bullseye-arrow fa-fw"></i></div>
+                        <h3 class="service-title">Targeted Ad Campaigns</h3>
+                        <div class="service-content">
+                            <p>Launch and manage effective ad campaigns (e.g., Meta, Google) designed to reach ideal clients and drive bookings.</p>
+                             <ul class="service-list-con">
+                                <li class="service-list-wrapper"><i class="fas fa-check-circle service-list-icon fa-fw"></i><div>Campaign Setup & Management</div></li>
+                                <li class="service-list-wrapper"><i class="fas fa-check-circle service-list-icon fa-fw"></i><div>Audience Targeting & Optimization</div></li>
+                                 <li class="service-list-wrapper"><i class="fas fa-check-circle service-list-icon fa-fw"></i><div>Budget Management & Reporting</div></li>
+                            </ul>
+                        </div>
+                    </div>
+                     <!-- Service 4: Coaching -->
+                     <div class="service-wrapper">
+                         <div class="service-icon"><i class="fa-solid fa-person-chalkboard fa-fw"></i></div>
+                         <h3 class="service-title">Done-With-You Coaching</h3>
+                         <div class="service-content">
+                             <p>Get personalized guidance and support to empower you or your team to manage aspects of your marketing effectively.</p>
+                              <ul class="service-list-con">
+                                 <li class="service-list-wrapper"><i class="fas fa-check-circle service-list-icon fa-fw"></i><div>Personalized Training Sessions</div></li>
+                                 <li class="service-list-wrapper"><i class="fas fa-check-circle service-list-icon fa-fw"></i><div>Ongoing Mentorship & Support</div></li>
+                              </ul>
+                         </div>
+                     </div>
+                </div>
+                 <div class="text-center" style="margin-top: 3.5rem;">
+                     <a href="#contact-form-section" class="btn primary-btn">Discuss Your Needs</a>
+                </div>
+            </div>
+        </section>
+        <!-- === END SERVICES SECTION === -->
+
+        <!-- === WHY WORK WITH ME SECTION === -->
+        <section class="section why-us-section" aria-labelledby="why-us-heading">
+             <div class="container">
+                 <div class="grid-2-col">
+                     <div class="why-us-details">
+                        <div class="block-overline is-left accent-text">THE OXYGEN DIFFERENCE</div>
+                        <h2 id="why-us-heading" class="block-title is-left">Focused Partnership, Clear Results</h2>
+                        <p>You’ll work with one person — me. No back-and-forth with teams. No vague emails. No noise.</p>
+                         <p>Just a focused, experienced partner who understands your business, your audience, and your time.</p>
+                        <p>I also use AI tools when helpful — to do more in less time — but the <strong class="highlight-text">thinking, strategy, and design</strong> always come from me.</p>
+                        <div class="trial-offer">
+                            <strong>Trust Comes First:</strong> Get started today, and pay only after one week.
+                        </div>
+                         <a href="#contact-form-section" class="btn secondary-btn" style="margin-top: 2.5em;">
+                             <i class="fab fa-whatsapp fa-fw"></i> Request Callback
+                         </a>
+                    </div>
+                     <div class="why-us-image">
+                         <!-- TODO: Replace placeholder image with actual relevant content and update alt text -->
+                        <img src="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=600" loading="lazy" alt="Two professionals collaborating over a tablet in a bright office">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- === END WHY WORK WITH ME SECTION === -->
+
+        <!-- === FOUNDER SECTION === -->
+        <section class="section founder-section section-bg-light" aria-labelledby="founder-heading">
+            <div class="container">
+                <div class="grid-2-col">
+                    <div class="founder-image-wrapper">
+                        <!-- TODO: Replace placeholder image with actual photo of Nabil -->
+                        <img src="https://via.placeholder.com/300x300/F5E9E2/303030?text=Nabil" loading="lazy" alt="Nabil Mabrouk - Founder of The Oxygen Factor" class="ceo-image"/>
+                    </div>
+                  <div class="founder-details">
+                    <div class="block-overline is-left">MEET YOUR PARTNER</div>
+                    <h2 id="founder-heading" class="block-title is-left">Nabil Mabrouk</h2>
+                    <p><strong>Founder of The Oxygen Factor</strong></p>
+                    <p>With years of experience in design, content, and marketing, I’ve helped wellness and beauty businesses find and amplify their voice online — from local spas to high-end aesthetic clinics.</p>
+                    <p>I founded <em>The Oxygen Factor</em> to offer a flexible, honest alternative to traditional marketing services. No bloated processes. No overpromising. Just smart, strategic work that respects your time, aligns with your goals, and delivers real, tangible results — helping you fill your calendar with the right clients.</p>
+                  </div>
+                </div>
+            </div>
+        </section>
+        <!-- === END FOUNDER SECTION === -->
+
+        <!-- === TESTIMONIALS SECTION === -->
+        <section id="testimonials" class="section" aria-labelledby="testimonials-heading">
+             <div class="container">
+                <div class="block-overline is-center">WHAT CLIENTS SAY</div>
+                <h2 id="testimonials-heading" class="block-header is-center">Real Results from Beauty Professionals</h2>
+                 <!-- TODO: Replace placeholder testimonials with actual client quotes -->
+                 <div class="testimonial-card">
+                     <blockquote class="testimonial-quote">
+                         <p>"Working with Nabil was a breath of fresh air. He truly understood our clinic's needs and delivered a clear strategy that actually got results. Our bookings increased significantly!"</p>
+                    </blockquote>
+                     <p class="testimonial-author">Dr. Anya Sharma <span>Aesthetic Clinic Owner</span></p>
+                 </div>
+                 <div class="testimonial-card" style="margin-top: 2.5em;">
+                     <blockquote class="testimonial-quote">
+                         <p>"The Oxygen Factor helped us streamline our online presence. Nabil is responsive, knowledgeable, and genuinely cares about our success. Highly recommended!"</p>
+                     </blockquote>
+                     <p class="testimonial-author">Sarah Chen <span>Spa Manager</span></p>
+                 </div>
+            </div>
+        </section>
+        <!-- === END TESTIMONIALS SECTION === -->
+
+        <!-- === CONTACT FORM SECTION === -->
+        <section id="contact-form-section" class="section section-bg-light" aria-labelledby="contact-heading">
+            <div class="container">
+                <div class="block-overline is-center">GET IN TOUCH</div>
+                <h2 id="contact-heading" class="block-header is-center">Request Your Callback</h2>
+                <p class="text-center max-width-narrow" style="margin-bottom: 3em;">Fill out the form below, and I'll contact you via WhatsApp to discuss how The Oxygen Factor can help your business.</p>
+
+                <div class="contact-form-wrapper">
+                    <!-- Form action is kept for non-JS fallback but fetch handles submission -->
+                    <form action="https://formspree.io/f/xkgrnyba" method="POST" id="whatsapp-contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="name">Full Name <span class="accent-text">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required aria-required="true" autocomplete="name">
+                        </div>
+                         <div class="form-group">
+                            <label for="whatsapp">WhatsApp Number <span class="accent-text">*</span></label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="e.g., +1 555 123 4567 (include country code)" required aria-required="true" autocomplete="tel">
+                            <small>Please include your country code.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address (Optional)</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">How can I help? (Optional)</label>
+                            <textarea id="message" name="message" placeholder="Tell me a bit about your business or what you need help with..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn primary-btn form-submit-btn">
+                                <i class="fab fa-whatsapp fa-fw"></i> Send Request
+                            </button>
+                        </div>
+                         <!-- Confirmation message container -->
+                         <div class="form-group" style="margin-bottom: 0;">
+                             <p class="form-confirmation" role="status">Thanks! I'll be in touch via WhatsApp soon.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <!-- === END CONTACT FORM SECTION === -->
+
+        <!-- === FINAL CALL TO ACTION SECTION === -->
+        <section id="cta-final" class="section footer-cta-section" aria-labelledby="cta-heading">
+            <div class="container">
+                 <div class="block-overline is-center" style="color: rgba(255,255,255,0.85);">READY TO GROW?</div>
+                 <h2 id="cta-heading" class="cta-header" style="font-size: clamp(1.8rem, 5vw, 2.8rem);">
+                    You focus on your clients.<br> I'll focus on bringing them to you.
+                 </h2>
+                 <p class="cta-body">Let's give your brand the oxygen it needs. Request a callback below to get started.</p>
+                 <a href="#contact-form-section" class="btn primary-btn cta-main-btn">
+                     <i class="fab fa-whatsapp fa-fw"></i>
+                     <span>Request Callback via WhatsApp</span>
+                 </a>
+            </div>
+        </section>
+        <!-- === END FINAL CTA SECTION === -->
+
+        <!-- === FOOTER SECTION === -->
+        <footer class="section footer-section">
+            <div class="container">
+                <div class="footer-container">
+                    <div class="footer-menu-con">
+                        <h3 class="footer-menu-title">Navigation</h3>
+                        <ul>
+                            <li><a href="#home" class="footer-link">Home</a></li>
+                            <li><a href="#about" class="footer-link">About</a></li>
+                            <li><a href="#services" class="footer-link">Services</a></li>
+                            <li><a href="#testimonials" class="footer-link">Testimonials</a></li>
+                            <li><a href="#contact-form-section" class="footer-link">Contact</a></li>
+                            <li><a href="/privacy-policy" class="footer-link">Privacy Policy</a></li> <!-- TODO: Create Privacy Policy page -->
+                        </ul>
+                    </div>
+                     <div class="footer-menu-con">
+                        <h3 class="footer-menu-title">Get in touch</h3>
+                         <ul>
+                             <li>
+                                 <div class="footer-contact">
+                                     <i class="fas fa-envelope fa-fw"></i>
+                                     <a href="mailto:nabilmabpro@gmail.com" class="footer-contact-link">nabilmabpro@gmail.com</a>
+                                 </div>
+                             </li>
+                             <li>
+                                 <div class="footer-contact">
+                                     <i class="fas fa-phone fa-fw"></i>
+                                     <a href="tel:+212679444525" class="footer-contact-link">+212 679 444 525</a>
+                                 </div>
+                            </li>
+                            <li>
+                                <div class="footer-contact">
+                                     <i class="fab fa-whatsapp fa-fw"></i>
+                                     <a href="#contact-form-section" class="footer-contact-link">Request WhatsApp Callback</a>
+                                 </div>
+                            </li>
+                         </ul>
+                    </div>
+                    <div class="footer-menu-con">
+                        <h3 class="footer-menu-title">Follow Me</h3>
+                        <div class="footer-soc-con">
+                            <!-- TODO: Verify Instagram link -->
+                            <a href="https://www.instagram.com/nabilsp2024/?hl=en" target="_blank" rel="noopener noreferrer" class="footer-soc-wrapper" title="Instagram" aria-label="Visit The Oxygen Factor on Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                             <!-- TODO: Verify Facebook link -->
+                            <a href="https://www.facebook.com/profile.php?id=100070079559003" target="_blank" rel="noopener noreferrer" class="footer-soc-wrapper" title="Facebook" aria-label="Visit The Oxygen Factor on Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+                     <div class="footer-menu-con footer-back-to-top">
+                         <a href="#home" class="footer-link" title="Back to Top" aria-label="Scroll back to top of page"><i class="fas fa-arrow-up"></i></a>
+                    </div>
+                </div>
+                 <div class="footnote">
+                    Copyright © <span id="copyright-year"></span> The Oxygen Factor. All Rights Reserved.
+                 </div>
+            </div>
+        </footer>
+        <!-- === END FOOTER SECTION === -->
+
+    </div><!-- End Page Wrapper -->
+
+    <!-- === SCRIPTS === -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+             // Set Copyright Year
+             const copyrightYear = document.getElementById('copyright-year');
+             if (copyrightYear) {
+                 copyrightYear.textContent = new Date().getFullYear();
+             }
+
+             // --- GSAP Hero Text Animation ---
+             if (typeof gsap !== 'undefined' && typeof $ !== 'undefined') {
+                 $(window).on("load", function() {
+                     gsap.delayedCall(0.2, function() {
+                         const header = $('.hero-header-new');
+                         const texts = header.find('.anim-text');
+                         if (!header.length || !texts.length) { console.warn("Hero animation elements not found."); return; }
+                          texts.each(function(index, el) { gsap.set(el, { opacity: 0, position: 'absolute', top: 0, left: 0, right: 0, textAlign: 'center', clip: "rect(0px, 0px, 400px, 0px)" }); });
+                         if (texts.length > 0) { gsap.set(texts.first(), { position: 'relative', opacity: 1, clip: 'auto' }); }
+                         var tlMainAnim = gsap.timeline({ repeat: -1, defaults: { ease: "expo.out" } });
+                         texts.each(function(index, el) {
+                             const element = $(el);
+                             let elementWidth = element.get(0).scrollWidth || element.text().length * (parseFloat(element.css('font-size')) || 16) * 0.6 || 250;
+                             if (elementWidth > 5) {
+                                 tlMainAnim.to(element, { opacity: 1, duration: 0.1, onStart: () => { gsap.set(element, { position: 'absolute' }); if (index === 0) gsap.set(texts.first(), { position: 'relative' }); } }, index === 0 ? "+=1.6" : ">");
+                                 tlMainAnim.to(element, { clip: `rect(0px, ${elementWidth + 35}px, 400px, 0px)`, duration: 1.1 });
+                                 tlMainAnim.to(element, { clip: `rect(0px, ${elementWidth + 35}px, 400px, ${elementWidth + 35}px)`, duration: 1.1 }, "+=1.4");
+                                 tlMainAnim.to(element, { opacity: 0, duration: 0.1 });
+                             }
+                         });
+                     });
+                 });
+             } else {
+                 console.warn("GSAP or jQuery not loaded, skipping hero animation.");
+                 const firstAnimText = document.querySelector('.hero-header-new .anim-text');
+                 if (firstAnimText) { firstAnimText.style.opacity = '1'; firstAnimText.style.position = 'relative'; firstAnimText.style.clip = 'auto'; }
+             }
+
+             // --- Sticky Navigation ---
+             const nav = document.getElementById('main-nav');
+             if (nav) {
+                 const stickyTriggerPoint = 100;
+                 window.addEventListener('scroll', function() {
+                     if (window.scrollY > stickyTriggerPoint) { if (!nav.classList.contains('sticky-nav')) { nav.classList.add('sticky-nav'); } }
+                     else { if (nav.classList.contains('sticky-nav')) { nav.classList.remove('sticky-nav'); } }
+                 }, { passive: true });
+             }
+
+            // --- Smooth Scroll & Mobile Nav Interaction ---
+            const links = document.querySelectorAll('a[href*="#"]:not([href="#"]):not([href="#0"])');
+            const mobileNav = document.getElementById('mobile-nav-overlay');
+            const burger = document.getElementById('burger-menu');
+            const body = document.body;
+
+            links.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    const targetId = this.hash;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        event.preventDefault();
+                        let scrollTargetPosition = targetElement.offsetTop;
+                        const mainNav = document.getElementById('main-nav');
+                        let navOffset = 0;
+                        if (mainNav) {
+                            const isCurrentlySticky = mainNav.classList.contains('sticky-nav');
+                            const willBeSticky = scrollTargetPosition > 100;
+                            if (willBeSticky) { navOffset = mainNav.offsetHeight > 40 ? mainNav.offsetHeight : 70; }
+                            else if (isCurrentlySticky && !willBeSticky) { navOffset = 0; }
+                            else { navOffset = 0; }
+                         }
+                        scrollTargetPosition -= navOffset;
+                        scrollTargetPosition -= 20;
+                        window.scrollTo({ top: Math.max(0, scrollTargetPosition), behavior: 'smooth' });
+                        if (mobileNav && mobileNav.style.display === 'block' || this.closest('.mobile-nav')) { closeMobileNav(); }
+                    }
+                });
+            });
+
+             // --- Mobile Menu Toggle ---
+             if (burger && mobileNav) {
+                 burger.addEventListener('click', function() {
+                     const isExpanded = burger.getAttribute('aria-expanded') === 'true';
+                     burger.classList.toggle('active');
+                     burger.setAttribute('aria-expanded', !isExpanded);
+                     if (!isExpanded) { mobileNav.style.display = 'block'; body.classList.add('overflow-hidden'); }
+                     else { closeMobileNav(); }
+                 });
+             }
+             function closeMobileNav() {
+                 if (mobileNav && burger && burger.classList.contains('active')) {
+                     mobileNav.style.display = 'none';
+                     burger.classList.remove('active');
+                     burger.setAttribute('aria-expanded', 'false');
+                     body.classList.remove('overflow-hidden');
+                 }
+             }
+
+            // --- Form Handling with Fetch to Formspree & Custom Confirmation ---
+            // Ensure this is the ONLY block handling the 'whatsapp-contact-form' submission
+            const contactForm = document.getElementById('whatsapp-contact-form');
+            if (contactForm) {
+                const confirmationMessage = contactForm.querySelector('.form-confirmation');
+                const submitButton = contactForm.querySelector('.form-submit-btn');
+                const formSpreeEndpoint = 'https://formspree.io/f/xkgrnyba'; // Your specific endpoint
+
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault(); // Prevent default browser submission
+
+                    // Basic validation check
+                    const nameInput = document.getElementById('name');
+                    const whatsappInput = document.getElementById('whatsapp');
+                    if (!nameInput.value.trim() || !whatsappInput.value.trim()) {
+                        alert('Please fill in all required fields (Name and WhatsApp Number).');
+                        if (!nameInput.value.trim()) nameInput.focus();
+                        else if (!whatsappInput.value.trim()) whatsappInput.focus();
+                        return; // Stop if validation fails
+                    }
+
+                    // Disable button and show loading state
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.innerHTML = 'Sending...';
+                        // Optional: Add spinner icon if FontAwesome is reliably loaded
+                        // submitButton.innerHTML = '<i class="fas fa-spinner fa-spin fa-fw"></i> Sending...';
+                    }
+
+                    // Prepare data for sending
+                    const formData = new FormData(contactForm);
+
+                    // Send data using Fetch API
+                    fetch(formSpreeEndpoint, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json' // Advise Formspree to respond with JSON
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // SUCCESS
+                            console.log('Form submitted successfully to Formspree.');
+                            const formGroups = contactForm.querySelectorAll('.form-group');
+                            formGroups.forEach(group => {
+                                if (!group.contains(confirmationMessage)) {
+                                    group.style.display = 'none'; // Hide the group
+                                }
+                            });
+                            if (confirmationMessage) {
+                                confirmationMessage.textContent = "Thanks! I'll be in touch via WhatsApp soon.";
+                                confirmationMessage.style.color = 'var(--body-text-color)';
+                                confirmationMessage.style.display = 'block';
+                            }
+                            // contactForm.reset(); // Uncomment to clear fields on success
+
+                        } else {
+                            // ERROR: Formspree returned an error
+                            response.json().then(data => {
+                                console.error('Formspree submission error:', data);
+                                let errorText = 'Sorry, there was a problem submitting your request. Please try again.';
+                                if (data && data.errors) {
+                                    errorText = data.errors.map(error => error.message).join(', ');
+                                }
+                                if (confirmationMessage) {
+                                    confirmationMessage.textContent = errorText;
+                                    confirmationMessage.style.color = 'red';
+                                    confirmationMessage.style.display = 'block';
+                                    // Ensure confirmation field is visible if other fields were hidden
+                                    confirmationMessage.closest('.form-group').style.display = 'block';
+                                }
+                            }).catch(jsonError => {
+                                console.error('Error parsing Formspree error response:', jsonError);
+                                if (confirmationMessage) {
+                                    confirmationMessage.textContent = 'Sorry, an unexpected error occurred. Please try again.';
+                                    confirmationMessage.style.color = 'red';
+                                    confirmationMessage.style.display = 'block';
+                                    confirmationMessage.closest('.form-group').style.display = 'block';
+                                }
+                            });
+                            // Re-enable the button on error
+                            if (submitButton) {
+                                submitButton.disabled = false;
+                                submitButton.innerHTML = '<i class="fab fa-whatsapp fa-fw"></i> Send Request';
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        // NETWORK ERROR
+                        console.error('Network error submitting form:', error);
+                        if (confirmationMessage) {
+                            confirmationMessage.textContent = 'Network error. Please check your connection and try again.';
+                            confirmationMessage.style.color = 'red';
+                            confirmationMessage.style.display = 'block';
+                             confirmationMessage.closest('.form-group').style.display = 'block';
+                        }
+                        // Re-enable the button on network error
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                            submitButton.innerHTML = '<i class="fab fa-whatsapp fa-fw"></i> Send Request';
+                        }
+                    });
+                });
+            }
+
+        }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>
